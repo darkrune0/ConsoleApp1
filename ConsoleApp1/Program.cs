@@ -34,7 +34,7 @@ namespace ConsoleApp1
                     }
                 }
 				Console.WriteLine((checkSum % 10) == 0);
-
+				//TODO get info on which is the type of the credit card
             }
 
 
