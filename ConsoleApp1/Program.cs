@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,17 +10,217 @@ namespace ConsoleApp1
 	class Program
 	{
 		public static void Main(string[] args)
-        {   //check Zip Code
+		{   
 			//shipping info
-			string Adress;
-			string ZipCode;
-			string Region;
-			string Country;
+			string Adress = "palaiokastrou 18";
+			string ZipCode = "81400";
+			string Region = "Lesbou";
+			string Country = "Greece";
 			//test variables
 			bool ValidZC;
-			bool ValidRg;
+			bool ValidRg = false;
+
+			//normalize zip code
+			if (ZipCode.Contains('-')) ZipCode = ZipCode.Replace("=", "");
+			if (ZipCode.Contains(' ')) ZipCode = ZipCode.Replace(" ", "");
+
+			//check if Zip Code is valid
+			long j;
+			if (!Int64.TryParse(ZipCode.Substring(0, ZipCode.Length - 1), out j))
+				ValidZC = false;
+			else if (ZipCode.Length != 5)
+				ValidZC = false;
+			else
+				ValidZC = true;
 
 
+			//create a hash table for the Zip code and region matches.
+			Hashtable ht = new Hashtable();
+			string[] post = new string[] { "10", "11", "12", "13" , "14", "15", "16", "17", "18", "19", "80"};
+			ht.Add("Attikhs", post );
+
+			post = new string[]{"20"};
+			ht.Add("Korinthias", post);
+
+			post = new string[] { "21" };
+			ht.Add("Argolidas", post);
+
+			post = new string[] { "22" };
+			ht.Add("Arkadias", post);
+
+			post = new string[] { "23" };
+			ht.Add("Lakonias", post);
+			
+			post = new string[] { "24" };
+			ht.Add("Messinias", post);
+			
+			post = new string[] { "25", "26"};
+			ht.Add("Achaias", post);
+			
+			post = new string[] { "27" };
+			ht.Add("Hleias", post);
+			
+			post = new string[] { "28" };
+			ht.Add("Kefallinias", post);
+			
+			post = new string[] { "29" };
+			ht.Add("Zakinthou", post);
+			
+			post = new string[] { "20" };
+			ht.Add("Aitoloakarnanias", post);
+			
+			post = new string[] { "31" };
+			ht.Add("Leukadas", post);
+			
+			post = new string[] { "32" };
+			ht.Add("Boiwtias", post);
+			
+			post = new string[] { "33" };
+			ht.Add("Fwkidas", post);
+			
+			post = new string[] { "34" };
+			ht.Add("Euboias", post);
+			
+			post = new string[] { "35" };
+			ht.Add("Fthiotidas", post);
+			
+			post = new string[] { "36" };
+			ht.Add("Eurutanias", post);
+			
+			post = new string[] { "37", "38" };
+			ht.Add("Magnisias", post);
+			
+			post = new string[] { "40", "41" };
+			ht.Add("Larisas", post);
+			
+			post = new string[] { "42" };
+			ht.Add("Trikalwn", post);
+			
+			post = new string[] { "43" };
+			ht.Add("Karditsas", post);
+			
+			post = new string[] { "44", "45" };
+			ht.Add("Iwanninwn", post);
+			
+			post = new string[] { "46" };
+			ht.Add("Thesprwtias", post);
+			
+			post = new string[] { "47" };
+			ht.Add("Artas", post);
+			
+			post = new string[] { "48" };
+			ht.Add("Prebezas", post);
+			
+			post = new string[] { "49" };
+			ht.Add("Kerkuras", post);
+			
+			post = new string[] { "50" };
+			ht.Add("Kozanhs", post);
+			
+			post = new string[] { "51" };
+			ht.Add("Grebenwn", post);
+			
+			post = new string[] { "52" };
+			ht.Add("Kastorias", post);
+			
+			post = new string[] { "53" };
+			ht.Add("Flwrinas", post);
+			
+			post = new string[] { "54", "55", "56", "57" };
+			ht.Add("Thessalonikhs", post);
+			
+			post = new string[] { "58" };
+			ht.Add("Pellas", post);
+			
+			post = new string[] { "59" };
+			ht.Add("Hmathias", post);
+			
+			post = new string[] { "60" };
+			ht.Add("Pierias", post);
+			
+			post = new string[] { "61" };
+			ht.Add("Kilkis", post);
+			
+			post = new string[] { "62" };
+			ht.Add("Serrwn", post);
+			
+			post = new string[] { "63" };
+			ht.Add("Xalkidikhs", post);
+			
+			post = new string[] { "64", "65" };
+			ht.Add("Kabalas", post);
+
+			post = new string[] { "66" };
+			ht.Add("Dramas", post);
+			
+			post = new string[] { "67" };
+			ht.Add("Janthhs", post);
+			
+			post = new string[] { "68" };
+			ht.Add("Ebrou", post);
+			
+			post = new string[] { "69" };
+			ht.Add("Rodophs", post);
+			
+			post = new string[] { "70", "71"};
+			ht.Add("Hrakleiou", post);
+
+			post = new string[] { "72" };
+			ht.Add("Lasithiou", post);
+			
+			post = new string[] { "73" };
+			ht.Add("Xaniwn", post);
+			
+			post = new string[] { "74" };
+			ht.Add("Rethumnhs", post);
+			
+			post = new string[] { "81" };
+			ht.Add("Lesbou", post);
+			
+			post = new string[] { "82" };
+			ht.Add("Xiou", post);
+			
+			post = new string[] { "83" };
+			ht.Add("Samou", post);
+			
+			post = new string[] { "84" };
+			ht.Add("Kukladwn", post);
+			
+			post = new string[] { "85" };
+			ht.Add("Dwdekanhsou", post);
+
+			//check if the Region 
+			ICollection keys = ht.Keys;
+			if (ValidZC)
+			{
+				foreach (string k in keys)
+				{
+					string[] postcode = (string[])ht[k];
+					if (Region == k)
+					{
+						foreach (string s in postcode)
+						{
+							if (ZipCode.StartsWith(s))
+							{
+								ValidRg = true;
+								break;
+							}
+						}
+						break;
+					}
+					else
+                        ValidRg = false;
+				}
+			}
+
+			//Console.WriteLine("Zip Code:" + ZipCode + " is " + ValidZC + "\nRegion is " + ValidRg + " For Nomos " + Region);
+			bool checkZip;
+			if(ValidZC && ValidRg)
+				checkZip = true; 
+			else
+				checkZip = false;
+			Console.WriteLine("for Nomos " + Region + " and " + ZipCode + " the match is " + checkZip);
+			//return checkZip;
 		}
 	}
 }
@@ -78,7 +279,7 @@ namespace ConsoleApp1
  */
 
 /* Check Card Num
- * 
+ 
 			//variables for testing
 			string CardID = "6388420075915958";
 			bool ValidCard = false;
@@ -127,4 +328,218 @@ namespace ConsoleApp1
 					Console.WriteLine(CardType);
 				}
             }
- */
+*/
+
+/*Check Zip Code
+
+			//shipping info
+			string Adress = "palaiokastrou 18";
+			string ZipCode = "81400";
+			string Region = "Lesbou";
+			string Country = "Greece";
+			//test variables
+			bool ValidZC;
+			bool ValidRg = false;
+
+			//normalize zip code
+			if (ZipCode.Contains('-')) ZipCode = ZipCode.Replace("=", "");
+			if (ZipCode.Contains(' ')) ZipCode = ZipCode.Replace(" ", "");
+
+			//check if Zip Code is valid
+			long j;
+			if (!Int64.TryParse(ZipCode.Substring(0, ZipCode.Length - 1), out j))
+				ValidZC = false;
+			else if (ZipCode.Length != 5)
+				ValidZC = false;
+			else
+				ValidZC = true;
+
+
+			//create a hash table for the Zip code and region matches.
+			Hashtable ht = new Hashtable();
+			string[] post = new string[] { "10", "11", "12", "13" , "14", "15", "16", "17", "18", "19", "80"};
+			ht.Add("Attikhs", post );
+
+			post = new string[]{"20"};
+			ht.Add("Korinthias", post);
+
+			post = new string[] { "21" };
+			ht.Add("Argolidas", post);
+
+			post = new string[] { "22" };
+			ht.Add("Arkadias", post);
+
+			post = new string[] { "23" };
+			ht.Add("Lakonias", post);
+			
+			post = new string[] { "24" };
+			ht.Add("Messinias", post);
+			
+			post = new string[] { "25", "26"};
+			ht.Add("Achaias", post);
+			
+			post = new string[] { "27" };
+			ht.Add("Hleias", post);
+			
+			post = new string[] { "28" };
+			ht.Add("Kefallinias", post);
+			
+			post = new string[] { "29" };
+			ht.Add("Zakinthou", post);
+			
+			post = new string[] { "20" };
+			ht.Add("Aitoloakarnanias", post);
+			
+			post = new string[] { "31" };
+			ht.Add("Leukadas", post);
+			
+			post = new string[] { "32" };
+			ht.Add("Boiwtias", post);
+			
+			post = new string[] { "33" };
+			ht.Add("Fwkidas", post);
+			
+			post = new string[] { "34" };
+			ht.Add("Euboias", post);
+			
+			post = new string[] { "35" };
+			ht.Add("Fthiotidas", post);
+			
+			post = new string[] { "36" };
+			ht.Add("Eurutanias", post);
+			
+			post = new string[] { "37", "38" };
+			ht.Add("Magnisias", post);
+			
+			post = new string[] { "40", "41" };
+			ht.Add("Larisas", post);
+			
+			post = new string[] { "42" };
+			ht.Add("Trikalwn", post);
+			
+			post = new string[] { "43" };
+			ht.Add("Karditsas", post);
+			
+			post = new string[] { "44", "45" };
+			ht.Add("Iwanninwn", post);
+			
+			post = new string[] { "46" };
+			ht.Add("Thesprwtias", post);
+			
+			post = new string[] { "47" };
+			ht.Add("Artas", post);
+			
+			post = new string[] { "48" };
+			ht.Add("Prebezas", post);
+			
+			post = new string[] { "49" };
+			ht.Add("Kerkuras", post);
+			
+			post = new string[] { "50" };
+			ht.Add("Kozanhs", post);
+			
+			post = new string[] { "51" };
+			ht.Add("Grebenwn", post);
+			
+			post = new string[] { "52" };
+			ht.Add("Kastorias", post);
+			
+			post = new string[] { "53" };
+			ht.Add("Flwrinas", post);
+			
+			post = new string[] { "54", "55", "56", "57" };
+			ht.Add("Thessalonikhs", post);
+			
+			post = new string[] { "58" };
+			ht.Add("Pellas", post);
+			
+			post = new string[] { "59" };
+			ht.Add("Hmathias", post);
+			
+			post = new string[] { "60" };
+			ht.Add("Pierias", post);
+			
+			post = new string[] { "61" };
+			ht.Add("Kilkis", post);
+			
+			post = new string[] { "62" };
+			ht.Add("Serrwn", post);
+			
+			post = new string[] { "63" };
+			ht.Add("Xalkidikhs", post);
+			
+			post = new string[] { "64", "65" };
+			ht.Add("Kabalas", post);
+
+			post = new string[] { "66" };
+			ht.Add("Dramas", post);
+			
+			post = new string[] { "67" };
+			ht.Add("Janthhs", post);
+			
+			post = new string[] { "68" };
+			ht.Add("Ebrou", post);
+			
+			post = new string[] { "69" };
+			ht.Add("Rodophs", post);
+			
+			post = new string[] { "70", "71"};
+			ht.Add("Hrakleiou", post);
+
+			post = new string[] { "72" };
+			ht.Add("Lasithiou", post);
+			
+			post = new string[] { "73" };
+			ht.Add("Xaniwn", post);
+			
+			post = new string[] { "74" };
+			ht.Add("Rethumnhs", post);
+			
+			post = new string[] { "81" };
+			ht.Add("Lesbou", post);
+			
+			post = new string[] { "82" };
+			ht.Add("Xiou", post);
+			
+			post = new string[] { "83" };
+			ht.Add("Samou", post);
+			
+			post = new string[] { "84" };
+			ht.Add("Kukladwn", post);
+			
+			post = new string[] { "85" };
+			ht.Add("Dwdekanhsou", post);
+
+			//check if the Region 
+			ICollection keys = ht.Keys;
+			if (ValidZC)
+			{
+				foreach (string k in keys)
+				{
+					string[] postcode = (string[])ht[k];
+					if (Region == k)
+					{
+						foreach (string s in postcode)
+						{
+							if (ZipCode.StartsWith(s))
+							{
+								ValidRg = true;
+								break;
+							}
+						}
+						break;
+					}
+					else
+                        ValidRg = false;
+				}
+			}
+
+			//Console.WriteLine("Zip Code:" + ZipCode + " is " + ValidZC + "\nRegion is " + ValidRg + " For Nomos " + Region);
+			bool checkZip;
+			if(ValidZC && ValidRg)
+				checkZip = true; 
+			else
+				checkZip = false;
+			Console.WriteLine("for Nomos " + Region + " and " + ZipCode + " the match is " + checkZip);
+			//return checkZip;
+*/
