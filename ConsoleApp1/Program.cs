@@ -11,9 +11,9 @@ namespace ConsoleApp1
 		public static void Main(string[] args)
         {//check card num
 			//variables for testing
-			string CardID = "4929011835589952";
-			bool ValidCard;
-			string CardType;
+			string CardID = "6388420075915958";
+			bool ValidCard = false;
+			string CardType = "";
 			//card id normalization
 			if (CardID.Contains('-')) CardID = CardID.Replace("=", "");
 			if (CardID.Contains(' ')) CardID = CardID.Replace(" ", "");
@@ -34,12 +34,43 @@ namespace ConsoleApp1
                     }
                 }
 				Console.WriteLine((checkSum % 10) == 0);
+				if((checkSum % 10) == 0) ValidCard = true;
+				Console.WriteLine("the answer is " + ValidCard);
 				//TODO get info on which is the type of the credit card
+
+				string[] cAmExp = new string[] {"34", "37"};
+				string[] cDinCl = new string[] {"300", "301", "302", "303", "304", "305", "36", "54"};
+				string[] cDisco = new string[] {"6011", "644", "645", "646", "647", "648", "649", "65"};
+				string[] cInstP = new string[] {"637", "638", "639"};
+				string[] cMaest = new string[] {"5018", "5020", "5038", "5893", "6304", "6759", "6761", "6762", "6763"};
+				string[] cMastC = new string[] {"51", "52", "53", "54", "55" };
+				string[] cVisa = new string[] {"4"};
+				string[] cJCB = new string[] {"35"};
+
+				//check card type
+				if (ValidCard)
+                {
+					foreach (string s in cAmExp)
+						if(CardID.StartsWith(s)) CardType = "American Express";
+					foreach (string s in cDinCl)
+						if (CardID.StartsWith(s)) CardType = "Diners Club";
+					foreach (string s in cInstP)
+						if (CardID.StartsWith(s)) CardType = "InstaPayment";
+					foreach (string s in cMaest)
+						if (CardID.StartsWith(s)) CardType = "Maestro";
+					foreach (string s in cMastC)
+						if (CardID.StartsWith(s)) CardType = "Master Card";
+					foreach (string s in cVisa)
+						if (CardID.StartsWith(s)) CardType = "Visa";
+					foreach (string s in cDisco)
+						if (CardID.StartsWith(s)) CardType = "Discover";
+					foreach (string s in cJCB)
+						if (CardID.StartsWith(s)) CardType = "JCB";
+
+					Console.WriteLine(CardType);
+				}
             }
-
-
 		}
-		
 	}
 }
 
@@ -100,4 +131,8 @@ namespace ConsoleApp1
 
 				Console.WriteLine(result);//value is boolean(true/false)
 			} 
+ */
+
+/* Check Card Num
+ 
  */
