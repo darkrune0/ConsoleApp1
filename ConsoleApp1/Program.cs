@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ namespace ConsoleApp1
 		private static DataSet dataSet;
 
 		public static void setStockData()
-        {
+		{
 			//try for a datatable, the datatable must be set outside the functions
 			System.Data.DataTable BooksStock = new System.Data.DataTable("BooksStock");
 			//declare variables for datacolumn and datarow
@@ -89,7 +89,7 @@ namespace ConsoleApp1
 			public double Price { get; set; }
 			public int Discount { get; set; }
 
-			public Book(string isbn, int quantity, double price, int discount) :this()
+			public Book(string isbn, int quantity, double price, int discount) : this()
 			{
 				this.ISBN = isbn;
 				this.Quantity = quantity;
@@ -127,11 +127,11 @@ namespace ConsoleApp1
 		}
 
 		public static bool ProceedToBuy(DataTable BooksStock, Book[] Cart)
-        {
+		{
 			bool flag = true;
 			int Stock = 0;
 
-			foreach (Book k in Cart) 
+			foreach (Book k in Cart)
 			{
 				//Console.WriteLine(k.ISBN);
 				//if !IsAvailable is true then the book does not exist in the BooksStock so it turns the flag to false
@@ -141,12 +141,12 @@ namespace ConsoleApp1
 				}
 			}
 			return flag;
-        }
+		}
 
 		public static void UpdateCartBasedOnAvailability(DataTable BooksStock, ref Book[] Cart)
-        {
+		{
 
-        }
+		}
 
 
 
@@ -156,13 +156,13 @@ namespace ConsoleApp1
 			List<Book> CartTemp = setCartData(); //not needed in testing
 			Book[] Cart = new Book[CartTemp.Count]; //not needed in testing
 			int i = 0;
-            foreach (Book k in CartTemp)
-            {
+			foreach (Book k in CartTemp)
+			{
 				Cart[i] = new Book(k.ISBN, k.Quantity, k.Price, k.Discount);
 				i++;
 			}
 
-			
+
 			int Stock = 0;
 			DataTable BooksStock = dataSet.Tables["BooksStock"];
 			bool check;//IsAvailable(BooksStock, "9780544003415", 19, ref Stock);
@@ -174,7 +174,6 @@ namespace ConsoleApp1
 		}
 	}
 }
-
 
 
 
@@ -610,61 +609,4 @@ public struct Book
 			}
 			Console.WriteLine("total price is: " + decimal.Round((decimal)totalPrice, 2));
 		}
-*/
-
-/* Shipping Cost
-	public struct ShippingInfo
-		{
-			public string Address { get; set; }
-			public string ZipCode { get; set; }
-			public string Region { get; set; }
-			public string Country { get; set; }
-
-			public ShippingInfo(string Address, string ZipCode, string Region, string Country) : this()
-            {
-                this.Address = Address;
-                this.ZipCode = ZipCode;
-                this.Region = Region;
-                this.Country = Country;
-            }
-		}
-
-		public static void Main(string[] args)
-		{
-			//Shipping Cost
-			//set a shipping adress
-			//ShippingInfo SI = new ShippingInfo("ROYMELHS 45", "17124", "KUKLADWN", "GREECE");
-			//ShippingInfo SI = new ShippingInfo("TZABELLA 21", "13845", "ATTIKHS", "GREECE");
-			ShippingInfo SI = new ShippingInfo("SCOBI 8", "23584", "LONDON", "UNITED KINGDOM");
-
-			//try the shipping cost calc
-			//declare the variables
-			double costcalc = -1;
-			string[] hpeirEl = new string[] { "KORINTHIAS", "ARGOLIDAS", "ARKADIAS", "LAKONIAS", "MESSINIAS", "ACHAIAS", "HLEIAS", "AITOLOAKARNANIAS", "BOIWTIAS", "FWKIDAS", "FTHIWTIDAS", "EURUTANIAS", "MAGNISIAS", "LARISAS", "TRIKALWN", "KARDITSAS", "IWANNINWN", "THESPRWTIAS", "ARTAS", "PREBEZAS", "KOZANHS", "GREBENWN", "KASTORIAS", "FLWRINAS", "THESSALONIKHS", "PELLAS", "HMATHIAS", "PIERIAS", "KILKIS", "SERRWN", "XALKIDIKHS", "KABALAS", "DRAMAS", "JANTHHS", "EBROU", "RODOPHS" };
-			string[] nhsioEL = new string[] { "KEFALLINIAS", "ZAKUNTHOU", "LEUKADAS", "EUBOIAS", "KERKYRAS", "HRAKLEIOU", "LASITHIOU", "XANIWN", "RETHUMNHS", "LESBOU", "XIOU", "SAMOU", "KUKLADWN", "DWDEKANHSOU" };
-
-			//check if the country and region exist.
-			if (SI.Country.Equals("GREECE"))
-            {
-				foreach(string s in hpeirEl)
-					if (hpeirEl.Contains(SI.Region))
-					{
-						costcalc = 3.5;
-					}
-				foreach (string s in nhsioEL)
-					if (nhsioEL.Contains(SI.Region))
-					{
-						costcalc = 5;
-					}
-				if (SI.Region.Equals("ATTIKHS"))
-					costcalc = 0;
-            }
-            else
-            {
-				costcalc = 8.5;
-            }
-			Console.WriteLine(costcalc);
-			//return costcalc;
-		}
- 
 */
